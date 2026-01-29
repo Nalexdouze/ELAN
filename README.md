@@ -39,12 +39,12 @@ cd sph-public
 
 GPLv3 - voir [LICENSE](LICENSE)
 
-**Vous êtes libre de:**
+**Vous êtes libre de:**\
 ✓ Utiliser commercialement\
 ✓ Modifier le code\
 ✓ Distribuer\
 
-**À condition de:**
+**À condition de:**\
 ✓ Partager vos modifications (copyleft)\
 ✓ Garder la même licence\
 ✓ Créditer l'auteur original
