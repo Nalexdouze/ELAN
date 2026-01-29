@@ -11,11 +11,11 @@
 
 ## 🎯 Fonctionnalités
 
-- ✅ Monitoring HotFolder intelligent
-- ✅ Actions PDF automatisées (impose, split, trim, etc.)
-- ✅ Impression CUPS universelle
-- ✅ Logs détaillés
-- ✅ Support CMYK + FOGRA profiles
+✅ Monitoring HotFolder intelligent\
+✅ Actions PDF automatisées (impose, split, trim, etc.)\
+✅ Impression CUPS universelle\
+✅ Logs détaillés\
+✅ Support CMYK + FOGRA profiles\
 
 ## 🚀 Installation
 
@@ -40,11 +40,11 @@ cd sph-public
 GPLv3 - voir [LICENSE](LICENSE)
 
 **Vous êtes libre de:**
-✓ Utiliser commercialement
-✓ Modifier le code
-✓ Distribuer
+✓ Utiliser commercialement\
+✓ Modifier le code\
+✓ Distribuer\
 
 **À condition de:**
-✓ Partager vos modifications (copyleft)
-✓ Garder la même licence
+✓ Partager vos modifications (copyleft)\
+✓ Garder la même licence\
 ✓ Créditer l'auteur original
