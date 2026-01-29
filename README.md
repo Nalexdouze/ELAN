@@ -1,7 +1,7 @@
 # LUC - Smart Prepress Hub (Community Edition)
 > Le hub intelligent du prépresse : automatisez vos workflows d'impression avec élégance
 
-[![Version](https://img.shields.io/badge/version-0.4.4-darkcyan.svg)](https://github.com/Nalexdouze/SmartPressHub)
+[![Version](https://img.shields.io/badge/version-0.10.4-darkcyan.svg)](https://github.com/Nalexdouze/SmartPressHub)
 [![Docker](https://img.shields.io/badge/docker-compose-blue.svg)](https://www.docker.com/)
 [![Python](https://img.shields.io/badge/python-3.12-green.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/license-GPLv3-green.svg)](LICENSE)
