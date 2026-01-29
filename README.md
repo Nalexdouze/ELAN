@@ -11,11 +11,11 @@
 
 ## 🎯 Fonctionnalités
 
-✅ Monitoring HotFolder intelligent
-✅ Actions PDF automatisées (impose, split, trim, etc.)
-✅ Impression CUPS universelle
-✅ Logs détaillés
-✅ Support CMYK + FOGRA profiles
+- ✅ Monitoring HotFolder intelligent
+- ✅ Actions PDF automatisées (impose, split, trim, etc.)
+- ✅ Impression CUPS universelle
+- ✅ Logs détaillés
+- ✅ Support CMYK + FOGRA profiles
 
 ## 🚀 Installation
 
