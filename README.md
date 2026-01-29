@@ -12,11 +12,11 @@
 
 ## 🚀 Installation
 
-\`\`\bash
+```bash
 git clone https://github.com/Nalexdouze/sph-public.git
 cd sph-public
 ./install.sh
-\`\`\`
+```
 
 ## 💎 Version Premium
 
