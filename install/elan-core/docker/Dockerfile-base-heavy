@@ -1,0 +1,93 @@
+FROM elan-base:latest
+
+# Dépendances système de base
+RUN apt-get update && apt-get install -y \
+    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    # PDF Processing (ajouts temporaires pour traitement PDF)
+    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    ghostscript \
+    libmupdf-dev \
+    qpdf \
+    libtiff-tools \
+    wget \
+    unzip \
+    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    # CUPS - Système d'impression
+    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    cups \
+    cups-client \
+    cups-bsd \
+    cups-ipp-utils \
+    # Drivers génériques Gutenprint (optionnel mais recommandé)
+    printer-driver-gutenprint \
+    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* 
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# Installation des profils couleur
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+RUN mkdir -p /usr/share/color/icc \
+    && cd /tmp \
+    && wget https://eci.org/lib/exe/pso-coated_v3.zip \
+    && wget https://eci.org/lib/exe/pso-uncoated_v3_fogra52.zip \
+    && unzip pso-coated_v3.zip -d pso-coated_v3 \
+    && unzip pso-uncoated_v3_fogra52.zip \
+    && cp pso-coated_v3/*.icc /usr/share/color/icc/ \
+    && cp pso-uncoated_v3_FOGRA52/*.icc /usr/share/color/icc/ \
+    && rm -rf pso-coated_v3.zip pso-coated_v3 \
+    && rm -rf pso-uncoated_v3_fogra52.zip pso-uncoated_v3_FOGRA52
+
+WORKDIR /app
+
+# Dépendances Python communes
+COPY requirements-base.txt /requirements-base.txt
+RUN pip install --no-cache-dir -r /requirements-base.txt
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# Configuration CUPS
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+RUN mkdir -p /var/run/cups /var/log/cups /var/cache/cups /var/spool/cups /etc/cups
+
+# Configuration CUPS minimale
+RUN cat > /etc/cups/cupsd.conf << 'EOF'
+LogLevel warn
+MaxLogSize 0
+Port 631
+Listen localhost:631
+Browsing Off
+BrowseLocalProtocols none
+DefaultAuthType Basic
+WebInterface Yes
+
+<Location />
+  Order allow,deny
+  Allow all
+</Location>
+
+<Location /admin>
+  Order allow,deny
+  Allow all
+</Location>
+
+<Location /admin/conf>
+  AuthType Default
+  Require user @SYSTEM
+  Order allow,deny
+  Allow all
+</Location>
+
+<Policy default>
+  <Limit All>
+    Order deny,allow
+    Allow all
+  </Limit>
+</Policy>
+EOF
+
+RUN cat > /etc/cups/cups-files.conf << 'EOF'
+SystemGroup root
+EOF
+
+CMD ["/bin/bash", "-c", "/usr/sbin/cupsd && python3 elan-watchdog.py"]

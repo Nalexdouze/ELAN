@@ -1,0 +1,14 @@
+mounts:
+  - name: Fiery XEROX
+    remote: "//192.168.34.11/HotFolder"
+    mount_point: "/mnts/XEROX-Iridesse"
+    username: "username"
+    password: "password"
+    options: "rw,vers=3.0"
+
+  - name: RIP-GMG
+    remote: "//192.168.34.12/HotFolder"
+    mount_point: "/mnts/RIP-GMG"
+    username: "username"
+    password: "password"
+    options: "rw,vers=3.0,noperm"

@@ -1,0 +1,453 @@
+# ============================================================================
+# PRESSES
+# ============================================================================
+# XEROX
+# ============================================================================
+  - name: "XEROX Aplat"
+    description: "Rasterisation à 600 DPI pour aplat CMJN sur **Xerox Iridesse**"
+    folder: /shares/entree/Presses/XEROX Iridesse/Aplat
+    patterns: ["*.pdf"]
+    actions:
+      - type: raster
+        params:
+          resolution: 600
+          output_suffix: "_raster-600"
+    destinations: 
+      - "/mnts/XEROX-Iridesse/APLAT"
+
+  - name: "XEROX Aplat PMS"
+    description: "Rasterisation à 600 DPI pour aplat incluant des tons directs sur **Xerox Iridesse**"
+    folder: /shares/entree/Presses/XEROX Iridesse/Aplat PMS
+    patterns: ["*.pdf"]
+    actions:
+      - type: raster
+        params:
+          resolution: 600
+          output_suffix: "_raster-600-spots"
+          color_mode: "separated"
+    destinations: 
+      - "/mnts/XEROX-Iridesse/APLAT"
+
+  - name: "XEROX Brochure"
+    description: "Rasterisation à 600 DPI pour brochures sur **Xerox Iridesse**"
+    folder: /shares/entree/Presses/XEROX Iridesse/Brochure
+    patterns: ["*.pdf"]
+    actions:
+      - type: raster
+        params:
+          resolution: 600
+          output_suffix: "_raster-600"
+    destinations: 
+      - "/mnts/XEROX-Iridesse/BROCHURE"
+
+  - name: "XEROX Découpe"
+    description: "Rasterisation à 600 DPI pour aplat incluant des tons directs ou calque de découpe sur **Xerox Iridesse**\
+                  Envoie de 2 PDF séparant automatiquement les découpes."
+    folder: /shares/entree/Presses/XEROX Iridesse/Decoupe
+    patterns: ["*.pdf"]
+    actions:
+      - type: extract_cutting
+        params:
+          simulation_suffix: "_simulation"
+          print_suffix: "_print"
+          route_simulation:
+            actions:
+              - type: raster
+                params:
+                  resolution: 150
+                  output_suffix: "_raster-150"
+            destinations:
+              - "/shares/sortie/TEST-XEROX-Iridesse/APLAT"
+          route_print:
+            actions:
+              - type: raster
+                params:
+                  resolution: 600
+                  output_suffix: "_raster-600-spots"
+                  color_mode: "separated"
+            destinations:
+              - "/shares/sortie/TEST-XEROX-Iridesse/APLAT"
+
+# ============================================================================
+# HP
+# ============================================================================
+
+# RECTO ======================================================================
+
+  - name: "HP Aplat Recto Quadri"
+    description: "Rasterisation à 800 DPI pour aplat **RECTO** CMJN sur **HP Indigo**\
+                  Automatiquement envoyé en CMYK et EMP"
+    folder: /shares/entree/Presses/HP Indigo 12KVP15K-HD/Aplat/Recto/Quadri
+    patterns: ["*.pdf"]
+    actions:
+      - type: adjust_mediabox
+        params:
+          margin_mm: 3
+          use_trimbox: true
+          center_content: true
+      - type: raster
+        params:
+          resolution: 800
+          output_suffix: "_raster-800"
+    destinations:
+      - "/mnts/HP-Indigo-12KVP15K-HD/APLAT AUTO Recto"
+      - "/mnts/HP-Indigo-12KVP15K-HD/APLAT AUTO Recto EPM"
+
+  - name: "HP Aplat Recto PMS"
+    description: "Rasterisation à 800 DPI pour aplat **RECTO** incluant des tons directs sur **HP Indigo**\
+                  Automatiquement envoyé en CMYK et EMP"
+    folder: /shares/entree/Presses/HP Indigo 12KVP15K-HD/Aplat/Recto/PMS
+    patterns: ["*.pdf"]
+    actions:
+      - type: adjust_mediabox
+        params:
+          margin_mm: 3
+          use_trimbox: true
+          center_content: true
+      - type: raster
+        params:
+          resolution: 800
+          output_suffix: "_raster-800-spots"
+          color_mode: "separated"
+    destinations:
+      - "/mnts/HP-Indigo-12KVP15K-HD/APLAT AUTO Recto"
+      - "/mnts/HP-Indigo-12KVP15K-HD/APLAT AUTO Recto EPM"
+
+  - name: "HP Aplat Recto Découpe"
+    description: "Rasterisation à 800 DPI pour aplat **RECTO** incluant des tons directs ou calque de découpe sur **HP Indigo**\
+                  Envoie de 2 PDF séparant automatiquement les découpes.\
+                  Automatiquement envoyé en CMYK et EMP"    
+    folder: /shares/entree/Presses/HP Indigo 12KVP15K-HD/Aplat/Recto/Decoupe
+    patterns: ["*.pdf"]
+    actions:
+      - type: adjust_mediabox
+        params:
+          margin_mm: 3
+          use_trimbox: true
+          center_content: true
+      - type: extract_cutting
+        params:
+          simulation_suffix: "_simulation"
+          print_suffix: "_print"
+          route_simulation:
+            actions:
+              - type: raster
+                params:
+                  resolution: 150
+                  output_suffix: "_raster-150"
+            destinations:
+              - "/mnts/HP-Indigo-12KVP15K-HD/APLAT AUTO Recto EPM"
+          route_print:
+            actions:
+              - type: raster
+                params:
+                  resolution: 800
+                  output_suffix: "_raster-800"
+            destinations:
+              - "/mnts/HP-Indigo-12KVP15K-HD/APLAT AUTO Recto"
+              - "/mnts/HP-Indigo-12KVP15K-HD/APLAT AUTO Recto EPM"
+
+# RECTO-VERSO ================================================================
+
+  - name: "HP Aplat Recto-Verso Quadri"
+    description: "Rasterisation à 800 DPI pour aplat **RECTO-VERSO** CMJN sur **HP Indigo**\
+                  Automatiquement envoyé en CMYK et EMP"
+    folder: /shares/entree/Presses/HP Indigo 12KVP15K-HD/Aplat/Recto-Verso/Quadri
+    patterns: ["*.pdf"]
+    actions:
+      - type: adjust_mediabox
+        params:
+          margin_mm: 3
+          use_trimbox: true
+          center_content: true
+      - type: raster
+        params:
+          resolution: 800
+          output_suffix: "_raster-800"
+    destinations: 
+      - "/mnts/HP-Indigo-12KVP15K-HD/APLAT AUTO Recto-Verso"
+      - "/mnts/HP-Indigo-12KVP15K-HD/APLAT AUTO Recto-Verso EPM"
+
+  - name: "HP Aplat Recto-Verso PMS"
+    description: "Rasterisation à 800 DPI pour aplat **RECTO-VERSO** incluant des tons directs sur **HP Indigo**\
+                  Automatiquement envoyé en CMYK et EMP"
+    folder: /shares/entree/Presses/HP Indigo 12KVP15K-HD/Aplat/Recto-Verso/PMS
+    patterns: ["*.pdf"]
+    actions:
+      - type: adjust_mediabox
+        params:
+          margin_mm: 3
+          use_trimbox: true
+          center_content: true
+      - type: raster
+        params:
+          resolution: 800
+          output_suffix: "_raster-800-spots"
+          color_mode: "separated"
+    destinations:
+      - "/mnts/HP-Indigo-12KVP15K-HD/APLAT AUTO Recto-Verso"
+      - "/mnts/HP-Indigo-12KVP15K-HD/APLAT AUTO Recto-Verso EPM"
+
+  - name: "HP Aplat Recto-Verso Découpe"
+    description: "Rasterisation à 800 DPI pour aplat **RECTO-VERSO** incluant des tons directs ou calque de découpe sur **HP Indigo**\
+                  Envoie de 2 PDF séparant automatiquement les découpes.\
+                  Automatiquement envoyé en CMYK et EMP"    
+    folder: /shares/entree/Presses/HP Indigo 12KVP15K-HD/Aplat/Recto/Decoupe
+    patterns: ["*.pdf"]
+    actions:
+      - type: adjust_mediabox
+        params:
+          margin_mm: 3
+          use_trimbox: true
+          center_content: true
+      - type: extract_cutting
+        params:
+          simulation_suffix: "_simulation"
+          print_suffix: "_print"
+          route_simulation:
+            actions:
+              - type: raster
+                params:
+                  resolution: 150
+                  output_suffix: "_raster-150"
+            destinations:
+              - "/mnts/HP-Indigo-12KVP15K-HD/APLAT AUTO Recto-Verso EPM"
+          route_print:
+            actions:
+              - type: raster
+                params:
+                  resolution: 800
+                  output_suffix: "_raster-800"
+            destinations:
+              - "/mnts/HP-Indigo-12KVP15K-HD/APLAT AUTO Recto-Verso"
+              - "/mnts/HP-Indigo-12KVP15K-HD/APLAT AUTO Recto-Verso EPM"
+
+# BROCHURE ===================================================================
+
+  - name: "HP Brochure Piquée"
+    description: "Rasterisation à 800 DPI pour brochures sur **HP Indigo**\
+                  Automatiquement envoyé en CMYK et EMP"
+    folder: /shares/entree/Presses/HP Indigo 12KVP15K-HD/Brochure/Pique
+    patterns: ["*.pdf"]
+    actions:
+      - type: adjust_mediabox
+        params:
+          margin_mm: 3
+          use_trimbox: true
+          center_content: true
+      - type: raster
+        params:
+          resolution: 800
+          output_suffix: "_raster-800"
+    destinations: 
+      - "/mnts/HP-Indigo-12KVP15K-HD/BROCHURE AUTO ENCARTE"
+      - "/mnts/HP-Indigo-12KVP15K-HD/BROCHURE AUTO ENCARTE EPM"
+
+# ============================================================================
+# XEROX+HP
+# ============================================================================
+
+  - name: "Brochure HP+XEROX - Automatique"
+    description: "Séparation automatique de la couverture sur **Xerox Iridesse** sur et de l'intérieur sur **HP Indigo**\
+                  Rasterisation à 600 DPI pour **Xerox Iridesse**\
+                  Rasterisation à 800 DPI pour **HP Indigo**\
+                  Automatiquement envoyé en CMYK et EMP sur **HP Indigo**"
+    folder: /shares/entree/Presses/Brochures - XEROX-Couv HP-Interieur
+    patterns: ["*.pdf"]
+    stability_timeout: 600
+    actions:
+      - type: saddle_stitch_split
+        params:
+          cover_pages: "1-2,-2--1"           # Pages 1,2 + pénultième, dernière
+          cover_suffix: "_cover"
+          inner_suffix: "_inner"
+          route_cover:
+            actions:
+              - type: raster
+                params:
+                  resolution: 600
+                  output_suffix: "_raster-600"
+            destinations: 
+              - "/mnts/XEROX-Iridesse/BROCHURE"
+          route_inner:
+            actions:
+              - type: adjust_mediabox
+                params:
+                  margin_mm: 3
+                  center_content: true
+              - type: raster
+                params:
+                  resolution: 800
+                  output_suffix: "_raster-800"
+            destinations: 
+              - "/mnts/HP-Indigo-12KVP15K-HD/BROCHURE AUTO ENCARTE"
+              - "/mnts/HP-Indigo-12KVP15K-HD/BROCHURE AUTO ENCARTE EPM"
+
+# ============================================================================
+# PDF pour BAT
+# ============================================================================
+
+# 150 ========================================================================
+
+  - name: "PDF pour BAT RVB-150"
+    description: "PDF à usage de BAT\
+                  Rasterisation 150 DPI **avec** compression JPEG et conversion RVB, équivalent à un PDF taille minimale.\ 
+                  Ajouts des repères visuels de coupe, fond perdu et plis. Ainsi que les côtes des volets en cas de plis.
+                  La zone de support est légèrement agrandie pour permet aux indications de format d'être visible."
+    folder: /shares/entree/PDF pour BAT/RVB-150
+    patterns: ["*.pdf"]
+    downloadable: true
+    actions:
+      - type: adjust_mediabox
+        params:
+          margin_mm: 12
+      - type: raster
+        params:
+          resolution: 150
+          output_format: "jpeg"
+          output_color: "rgb"
+          jpeg_quality: 75
+          output_suffix: "_raster_compressed-150"
+      - type: add_trim_guide
+    destinations: 
+      - "/shares/sortie/PDF pour BAT/RVB-150"
+
+# 300 ========================================================================
+
+  - name: "PDF pour BAT CMJN-300"
+    description: "PDF à usage de BAT\
+                  Rasterisation 300 DPI **sans** compression et **ni** conversion RVB\ 
+                  Ajouts des repères visuels de coupe, fond perdu et plis. Ainsi que les côtes des volets en cas de plis.
+                  La zone de support est légèrement agrandie pour permet aux indications de format d'être visible."
+    folder: /shares/entree/PDF pour BAT/CMJN-300
+    patterns: ["*.pdf"]
+    downloadable: true
+    actions:
+      - type: adjust_mediabox
+        params:
+          margin_mm: 12
+          output_suffix: ""
+      - type: raster
+        params:
+          resolution: 300
+          output_suffix: "_raster-300"
+      - type: add_trim_guide
+    destinations: 
+      - "/shares/sortie/PDF pour BAT/CMJN-300"
+
+  - name: "PDF pour BAT CMJN-300-JPEG"
+    description: "PDF à usage de BAT\
+                  Rasterisation 300 DPI **avec** compression et **sans** conversion RVB\ 
+                  Ajouts des repères visuels de coupe, fond perdu et plis. Ainsi que les côtes des volets en cas de plis.
+                  La zone de support est légèrement agrandie pour permet aux indications de format d'être visible."
+    folder: /shares/entree/PDF pour BAT/CMJN-300-JPEG
+    patterns: ["*.pdf"]
+    downloadable: true
+    actions:
+      - type: adjust_mediabox
+        params:
+          margin_mm: 12
+          output_suffix: ""
+      - type: raster
+        params:
+          resolution: 300
+          output_format: "jpeg"
+          jpeg_quality: 75
+          output_suffix: "_raster_compressed-300"
+      - type: add_trim_guide
+    destinations: 
+      - "/shares/sortie/PDF pour BAT/CMJN-300-JPEG"
+
+  - name: "PDF pour BAT CMJN-300 sans BlueLine"
+    description: "PDF à usage de BAT\
+                  Rasterisation 300 DPI **sans** compression et **ni** conversion RVB\ 
+                  **Sans** des repères visuels."
+    folder: /shares/entree/PDF pour BAT/CMJN-300 sans BlueLine
+    patterns: ["*.pdf"]
+    downloadable: true
+    actions:
+      - type: raster
+        params:
+          resolution: 300
+          output_suffix: "_raster-300"
+    destinations: 
+      - "/shares/sortie/PDF pour BAT/CMJN-300 sans BlueLine"
+
+# ============================================================================
+# PDF pour SOUS-TRAITANCE
+# ============================================================================
+
+  - name: "PDF pour sous-traitance CMJN-300"
+    description: "PDF à destination de sous-traitants\
+                  Rasterisation 300 DPI **sans** compression"
+    folder: /shares/entree/PDF pour sous-traitance/CMJN-300
+    patterns: ["*.pdf"]
+    downloadable: true
+    actions:
+      - type: raster
+        params:
+          resolution: 300
+          output_suffix: "_ST_CMJN_raster-300"
+    destinations: 
+      - "/shares/sortie/PDF pour sous-traitance/CMJN-300"
+
+  - name: "PDF pour sous-traitance CMJN-600"
+    description: "PDF à destination de sous-traitants\
+                  Rasterisation 600 DPI **sans** compression"
+    folder: /shares/entree/PDF pour sous-traitance/CMJN-600
+    patterns: ["*.pdf"]
+    downloadable: true
+    actions:
+      - type: raster
+        params:
+          resolution: 600
+          output_suffix: "_ST_CMJN_raster-600"
+    destinations: 
+      - "/shares/sortie/PDF pour sous-traitance/CMJN-600"
+
+  - name: "PDF pour sous-traitance CMJN-800"
+    description: "PDF à destination de sous-traitants\
+                  Rasterisation 800 DPI **sans** compression"
+    folder: /shares/entree/PDF pour sous-traitance/CMJN-800
+    patterns: ["*.pdf"]
+    downloadable: true
+    actions:
+      - type: raster
+        params:
+          resolution: 800
+          output_suffix: "_ST_CMJN_raster-800"
+    destinations: 
+      - "/shares/sortie/PDF pour sous-traitance/CMJN-800"
+
+  - name: "PDF pour sous-traitance CMJN-1200"
+    description: "PDF à destination de sous-traitants\
+                  Rasterisation 1200 DPI **sans** compression"
+    folder: /shares/entree/PDF pour sous-traitance/CMJN-1200
+    patterns: ["*.pdf"]
+    downloadable: true
+    actions:
+      - type: raster
+        params:
+          resolution: 1200
+          output_suffix: "_ST_CMJN_raster-1200"
+    destinations: 
+      - "/shares/sortie/PDF pour sous-traitance/CMJN-1200"
+
+# ============================================================================
+# AUTRES
+# ============================================================================
+
+  - name: "EPSON SC-P5000"
+    description: "Envoi direct **sans** traitement dans le RIP-GMG pour épreuve chromatique"
+    folder: /shares/entree/Traceurs/EPSON SC-P5000 (GMG)
+    patterns: ["*.pdf"]
+    destinations: 
+      - "/mnts/RIP-GMG/Fogra39L sans gamme"
+
+  - name: "Morgana SC7100ProT XL"
+    description: "Envoi direct des fichiers de découpe sur ColorCutPro"
+    folder: /shares/entree/Decoupe/Morgana SC7100ProT XL - ColorCutPro
+    patterns: ["*.jbf", "*.ilm"]
+    destinations: 
+      - "/mnts/PC-ColorCutPro"
+    overwrite: true

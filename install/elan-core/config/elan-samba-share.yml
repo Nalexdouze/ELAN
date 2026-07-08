@@ -1,0 +1,14 @@
+share:
+  - name: Dossier d'entrée
+    path: /shares/entree
+    samba_share: true
+
+  - name: Dossier de sortie
+    path: /shares/sortie
+    samba_share: true
+
+samba:
+  workgroup: "WORKGROUP"
+  netbios: "SRV-AC-ELAN"
+  comment: "Partages ELAN"
+  guest_ok: true

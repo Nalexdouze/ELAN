@@ -1,0 +1,6 @@
+PyMuPDF>=1.23.0      # Manipulation PDF + bluelines + extraction
+pikepdf>=8.0.0       # Anamorphose avancée + manipulation bas niveau
+img2pdf
+tifffile
+numpy
+Pillow
