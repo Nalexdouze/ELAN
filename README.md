@@ -78,6 +78,7 @@ journalctl -f CONTAINER_NAME=elan-watchdog
 - **Montages CIFS distants** (presses, RIP) : `config/elan-samba-mnt.yml` — voir [docs/elan-samba-mnt.md](docs/elan-samba-mnt.md)
 - **Partages locaux exposés** (dépôt/retrait) : `config/elan-samba-share.yml`
 - **Watchers** (hotfolders + pipeline d'actions) : `config/elan-watchdog.yml`
+- **Purge automatique** (genstore + dossiers de sortie) : `config/elan-purge.yml` — voir [docs/elan-purge.md](docs/elan-purge.md)
 
 Schéma d'un watcher :
 

@@ -1,0 +1,21 @@
+# ============================================================================
+# FILE: /opt/elan/config/elan-purge.yml
+# Politique de purge — genstore (tickets PWS) + dossiers de sortie
+# (/shares/sortie/). Lu par scripts/purge_elan_storage.sh à chaque exécution
+# (cron quotidien, cf. install_backend.sh). Modifiable à la main ici, ou (à
+# terme) réécrit par l'admin WebUI ÉLAN.
+#
+# Sur ELAN-Public (ENV_LABEL=PUBLIC), la purge genstore de ce script est
+# immédiate et inconditionnelle (filet de sécurité — cleanup_job() fait déjà
+# l'essentiel du travail en temps réel sur cette édition, contrairement à
+# Dev/Premium où cleanup_job() est neutralisée). genstore_retention_hours
+# ci-dessous est donc ignoré sur cette édition.
+# ============================================================================
+
+# Rétention du genstore en heures — ignorée sur ELAN-Public (purge immédiate).
+genstore_retention_hours: 720
+
+# Dossiers sous /shares/sortie/ à purger, un par ligne "sous-chemin|heures".
+sortie_rules:
+  - "PDF pour BAT|72"
+  - "PDF pour sous-traitance|720"

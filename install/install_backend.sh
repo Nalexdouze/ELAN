@@ -285,6 +285,18 @@ else
 fi
 
 # ----------------------------------------------------------
+# Cron de purge genstore (retenu par cleanup_job() sur cette édition, purge
+# immédiate ici en filet de sécurité) + dossiers de sortie
+# ----------------------------------------------------------
+echo "🧹 Configuration de la purge automatique genstore/sortie..."
+
+chmod +x /opt/elan/scripts/purge_elan_storage.sh
+
+PURGE_CRON_LINE="0 3 * * * /opt/elan/scripts/purge_elan_storage.sh PUBLIC >> /var/log/elan-purge.log 2>&1"
+( crontab -l 2>/dev/null | grep -vF "purge_elan_storage.sh" ; echo "$PURGE_CRON_LINE" ) | crontab -
+echo "✅ Cron purge installé (quotidien à 3h, cf. /opt/elan/config/elan-purge.yml)"
+
+# ----------------------------------------------------------
 # Cron de surveillance mDNS (redémarre Avahi s'il ne répond plus)
 # ----------------------------------------------------------
 echo "📡 Configuration de la surveillance mDNS..."
