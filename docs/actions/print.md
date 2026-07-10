@@ -1,6 +1,8 @@
 # `print` — Impression CUPS (traceurs)
 
-Envoie un PDF vers une imprimante CUPS (traceurs grand format type Epson SureColor), avec calcul automatique du format personnalisé et de l'orientation optimale selon la largeur du rouleau.
+Envoie un PDF vers une imprimante CUPS, avec calcul automatique du format personnalisé et de l'orientation optimale selon la largeur du rouleau.
+
+Conçue à l'origine pour piloter un traceur **Epson SureColor** (SC-T7200), l'action reste générique : elle s'appuie sur CUPS standard (`lp`/`lpadmin`), donc utilisable avec n'importe quelle imprimante ou traceur pris en charge par CUPS. Seuls `printer_driver` (auto-détection du PPD Epson par défaut) et certaines options (`print_quality`, `mode`, `auto_cut`) sont taillées sur les options CUPS spécifiques aux traceurs Epson — à ajuster ou ignorer selon le matériel réellement piloté.
 
 ## Paramètres
 

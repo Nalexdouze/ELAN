@@ -5,7 +5,7 @@ Chaque action du pipeline PWS est documentée séparément : rôle, paramètres 
 | Type YAML | Rôle en une phrase | Détails |
 |---|---|---|
 | `raster` | Rasterise un PDF (Ghostscript), CMYK/Gray/tons directs, sortie TIFF ou JPEG | [raster.md](raster.md) |
-| `impose` | Impose un PDF avec calcul automatique des poses et repères de coupe | [impose.md](impose.md) |
+| `impose` ⚠️ | Impose un PDF avec calcul automatique des poses et repères de coupe — **en développement** | [impose.md](impose.md) |
 | `adjust_mediabox` | Ajuste MediaBox/CropBox autour de la TrimBox (fonds perdus) | [adjust_mediabox.md](adjust_mediabox.md) |
 | `add_trim_guide` | Ajoute repères visuels de coupe, plis, côtes (BAT) | [add_trim_guide.md](add_trim_guide.md) |
 | `extract_cutting` | Sépare un PDF avec calque/tons de découpe en versions simulation + impression | [extract_cutting.md](extract_cutting.md) |

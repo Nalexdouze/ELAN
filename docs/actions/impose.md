@@ -1,5 +1,7 @@
 # `impose` — Imposition automatique
 
+> ⚠️ **En développement** — la géométrie (bleed/gouttière/pince) n'est pas encore validée sur tous les cas réels ; à utiliser avec vérification manuelle avant envoi presse.
+
 Impose un PDF sur une feuille de format donné, avec calcul automatique du nombre optimal de poses, repères de coupe et gestion du recto-verso.
 
 ## Paramètres

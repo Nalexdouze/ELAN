@@ -14,6 +14,14 @@
 
 ---
 
+## 💡 Pourquoi ÉLAN
+
+ÉLAN est né d'une urgence de terrain : la coupure brutale d'un flux de production suite à un changement interne, sans plus aucun outil pour recevoir et envoyer les travaux vers les presses. Plutôt que de multiplier les montages réseau sur chaque poste pour atteindre les hotfolders de chaque presse, l'idée a été de centraliser tout dépôt de fichier en un point unique et d'automatiser le traitement qui suit.
+
+La rasterisation systématique en amont (action [`raster`](docs/actions/raster.md)) n'est pas un détail : elle garantit qu'un BAT présenté au client aura exactement le même rendu que ce qui sortira en presse, puisque les deux traversent le même pipeline. Des RIP différents entre poste de contrôle et presse peuvent interpréter un même PDF vectoriel différemment — rasteriser une seule fois, en amont, élimine cette source d'erreur.
+
+---
+
 ## 📖 Table des matières
 
 - [Vue d'ensemble](#-vue-densemble)
@@ -97,7 +105,7 @@ Exemples complets combinant plusieurs actions (aplat, imposition, découpe, BAT,
 | Type YAML | Rôle en une phrase | Détails |
 |---|---|---|
 | `raster` | Rasterise un PDF (Ghostscript), CMYK/Gray/tons directs, sortie TIFF ou JPEG | [docs/actions/raster.md](docs/actions/raster.md) |
-| `impose` | Impose un PDF avec calcul automatique des poses et repères de coupe | [docs/actions/impose.md](docs/actions/impose.md) |
+| `impose` ⚠️ | Impose un PDF avec calcul automatique des poses et repères de coupe — **en développement**, géométrie pas encore validée sur tous les cas réels | [docs/actions/impose.md](docs/actions/impose.md) |
 | `adjust_mediabox` | Ajuste MediaBox/CropBox autour de la TrimBox (fonds perdus) | [docs/actions/adjust_mediabox.md](docs/actions/adjust_mediabox.md) |
 | `add_trim_guide` | Ajoute repères visuels de coupe, plis, côtes (BAT) | [docs/actions/add_trim_guide.md](docs/actions/add_trim_guide.md) |
 | `extract_cutting` | Sépare un PDF avec calque/tons de découpe en versions simulation + impression | [docs/actions/extract_cutting.md](docs/actions/extract_cutting.md) |
